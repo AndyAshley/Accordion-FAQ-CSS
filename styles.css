@@ -1,0 +1,259 @@
+:root {
+  /* Primary Colors */
+
+  /* Text */
+  --dark-blue: hsl(238, 29%, 16%);
+  --soft-red: hsl(14, 88%, 65%);
+
+  /* Background Gradient */
+
+  --soft-violet: hsl(273, 75%, 66%);
+  --soft-blue: hsl(240, 73%, 65%);
+
+  /* Nuetral Colors */
+
+  --dark-gray-blue: hsl(237, 12%, 33%);
+  --gray-blue: hsl(240, 6%, 50%);
+
+  /* Dividers */
+
+  --light-grey-blue: hsl(240, 5%, 91%);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Kumbh Sans", sans-serif;
+  font-size: 12px;
+}
+
+main {
+  min-height: 100vh;
+  min-width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-image: linear-gradient(var(--soft-violet), var(--soft-blue));
+  background-size: cover;
+  padding-top: 8rem;
+}
+
+.attribution {
+  padding-top: 1rem;
+  font-size: 10px;
+  text-align: center;
+  color: var(--dark-blue);
+}
+
+.attribution a {
+  color: var(--soft-red);
+}
+
+/* card css */
+
+.card-container {
+  background: white;
+  border-radius: 25px;
+  display: flex;
+  flex-direction: column;
+  width: 325px;
+  height: 500px;
+  box-shadow: 0px 10px 20px hsla(238, 29%, 16%, 0.6);
+}
+
+.card-header {
+  background-image: url("./images/bg-pattern-mobile.svg");
+  background-repeat: no-repeat;
+  background-position: 36px 0px;
+  background-size: 247px;
+  height: 125px;
+}
+
+.image-wrapper {
+  position: relative;
+}
+
+.mobile-img {
+  position: absolute;
+  top: -105px;
+  left: 42px;
+  max-width: 235px;
+  height: auto;
+}
+
+.desktop-img {
+  display: none;
+}
+
+.card-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+/* FAQ CSS */
+
+.faq {
+  list-style: none;
+  padding: 0rem 1rem 1rem 1rem;
+  width: 90%;
+  font-size: 12px;
+}
+
+.faq h1 {
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--dark-blue);
+  text-align: center;
+  padding-bottom: 10px;
+}
+
+.faq-question {
+  padding-block: 15px;
+  border-bottom: 1px solid var(--light-grey-blue);
+  position: relative;
+  line-height: 1.5rem;
+}
+
+.faq-answer {
+  color: var(--grey-blue);
+  opacity: 0.7;
+  max-height: 0;
+  overflow: hidden;
+}
+
+.faq-icon {
+  position: absolute;
+  top: 20px;
+  left: calc(100% - 13px);
+  max-height: 100%;
+  width: auto;
+  z-index: 9999;
+  transition: all 0.25s;
+}
+
+/* Handle question toggle/states  */
+
+input {
+  position: absolute;
+  left: -99999px;
+}
+
+label {
+  margin-right: auto;
+  color: var(--dark-gray-blue);
+  font-size: 12px;
+}
+
+label:hover {
+  cursor: pointer;
+  color: var(--soft-red);
+}
+
+input:checked ~ label {
+  color: var(--dark-blue);
+  font-weight: 700;
+}
+
+input:checked ~ .faq-answer {
+  padding-top: 10px;
+  animation: toggle-accordion 0.5s linear forwards;
+}
+
+input:checked ~ .faq-icon {
+  transform: rotate(180deg);
+}
+
+/* animation */
+
+@keyframes toggle-accordion {
+  from {
+    max-height: 0;
+  }
+  to {
+    max-height: 10vh;
+  }
+}
+
+@media (min-width: 900px) {
+  main {
+    padding-top: 0;
+  }
+
+  .attribution {
+    padding-top: 2rem;
+    font-size: 11px;
+    text-align: center;
+    color: var(--dark-blue);
+  }
+
+  .card-container {
+    flex-direction: row;
+    justify-content: space-between;
+    width: 900px;
+    min-height: 500px;
+    padding-right: 80px;
+    position: relative;
+  }
+
+  .card-container::before {
+    position: absolute;
+    content: "";
+    top: 215px;
+    left: -85px;
+    height: 200px;
+    width: 175px;
+    background-image: url("./images/illustration-box-desktop.svg");
+    background-repeat: no-repeat;
+    background-position: 0px 0px;
+    background-size: contain;
+    z-index: 10;
+  }
+
+  .card-header {
+    background-image: url("./images/bg-pattern-desktop.svg");
+    background-repeat: no-repeat;
+    background-position: -630px -300px;
+    background-size: 1000px;
+    width: 50%;
+    height: 100%;
+    overflow: hidden;
+  }
+
+  .mobile-img {
+    display: none;
+  }
+
+  .desktop-img {
+    display: block;
+    position: absolute;
+    top: 75px;
+    left: -100px;
+    max-width: 500px;
+    height: auto;
+  }
+
+  .desktop-img::after {
+    background-image: url("./images/illustration-box-desktop.svg");
+    content: "";
+    top: 0px;
+    left: 0px;
+    z-index: 99999;
+  }
+
+  .card-body {
+    width: 50%;
+    margin-left: auto;
+  }
+
+  .faq h1 {
+    text-align: left;
+    padding-bottom: 30px;
+  }
+}
